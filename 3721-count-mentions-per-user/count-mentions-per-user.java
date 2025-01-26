@@ -10,19 +10,12 @@ class Solution {
                 }else return Integer.parseInt(l1.get(1)) - Integer.parseInt(l2.get(1));
             }
         });
-        
-
-        // System.out.print(events);
-        
+                
         int t = 0;
         for(int i = 0; i < n; i++){
             String event = events.get(i).get(0);
             int curTime = Integer.parseInt(events.get(i).get(1));
-            t += curTime;
-            if(event.equals("OFFLINE")){
-                int ind = Integer.parseInt(events.get(i).get(2));
-                offline.put(ind, curTime);
-            }else if(event.equals("MESSAGE")){
+            if(event.equals("MESSAGE")){
                 String mentionString = events.get(i).get(2);
                 if(mentionString.equals("ALL")){
                     for(int j = 0;j < numberOfUsers; j++){
@@ -45,11 +38,10 @@ class Solution {
                             res[ind1]++;  
                     }
                 }
-            } 
-                
-            //  System.out.print(offline+" ");
-            // for(int k : res) System.out.print(k+" ");
-            // System.out.println();
+            }else if(event.equals("OFFLINE")){
+                int ind = Integer.parseInt(events.get(i).get(2));
+                offline.put(ind, curTime);
+            }
         }
             return res;
     }
