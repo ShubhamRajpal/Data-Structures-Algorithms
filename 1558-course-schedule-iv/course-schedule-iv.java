@@ -20,7 +20,6 @@ class Solution {
             }
         }
 
-        int i = 0;
         Map<Integer, Set<Integer>> prereqNodes = new HashMap<>();
         while(!q.isEmpty()){
             int node = q.poll();
@@ -33,6 +32,7 @@ class Solution {
                     prereqNodes.put(adjNode, temp);
                 }
                 prereqNodes.get(adjNode).add(node);
+
                 for(int curPrereq : prereqNodes.getOrDefault(node, new HashSet<>())){
                     prereqNodes.get(adjNode).add(curPrereq);
                 }
