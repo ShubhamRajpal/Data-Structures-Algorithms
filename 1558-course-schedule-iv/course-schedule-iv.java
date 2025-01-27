@@ -24,6 +24,7 @@ class Solution {
         while(!q.isEmpty()){
             int node = q.poll();
 
+            // Since we want to get the prerequisites of this popped out node in O(1) time we stored this node in all the preprequisites of adjNode 
             for(int adjNode : adjList.get(node)){
                 
                 if(prereqNodes.get(adjNode) == null){
@@ -33,6 +34,7 @@ class Solution {
                 }
                 prereqNodes.get(adjNode).add(node);
 
+                //  We also need to store prerequisistes of this node in adjNode as well because due to transtivity all nodes prerequisites of this node are also prerequisites of all the adjNode
                 for(int curPrereq : prereqNodes.getOrDefault(node, new HashSet<>())){
                     prereqNodes.get(adjNode).add(curPrereq);
                 }
