@@ -14,11 +14,9 @@ class Solution {
         }
 
         Queue<Integer> q = new LinkedList<>();
-        Set<Integer> uniqueNodes = new HashSet<>();
         for(int i = 0; i < numCourses; i++){
             if(indegree[i] == 0) {
                 q.offer(i);
-                uniqueNodes.add(i);
             }
         }
 
@@ -46,8 +44,6 @@ class Solution {
 
         List<Boolean> ans = new ArrayList<>();
 
-        // System.out.println(topo);
-        // System.out.println(uniqueNodes);
         for(int j = 0; j < queries.length; j++){
             int u = queries[j][0];
             int v = queries[j][1];
