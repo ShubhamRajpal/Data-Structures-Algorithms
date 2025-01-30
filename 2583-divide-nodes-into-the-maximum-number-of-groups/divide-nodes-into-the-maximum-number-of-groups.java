@@ -87,18 +87,14 @@ class Solution {
              maxGroups[i] = bfs(i, n, adjList);
         }
 
-        for(int i : maxGroups) System.out.print(i+" ");
 
         // Find max for each component
         int totalGroups = 0;
         boolean[] vis = new boolean[n+1];
-        int maxi = 0;
         for(int i = 1; i <= n;i++){
             if(!vis[i]){
                 vis[i] = true;
-             maxi = getMaxGroupsComponentWise(i, adjList, vis, maxGroups);
-                System.out.print(maxi);
-                totalGroups += (maxi);
+                totalGroups += (getMaxGroupsComponentWise(i, adjList, vis, maxGroups));
             }
         }
         
