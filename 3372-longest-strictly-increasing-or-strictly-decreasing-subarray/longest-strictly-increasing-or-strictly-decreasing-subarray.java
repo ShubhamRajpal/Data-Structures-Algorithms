@@ -5,19 +5,18 @@ class Solution {
         for (int i = 0; i < n - 1; i++) {
             if (nums[i] > nums[i + 1]) {
                 maxDec += 1;
-                res = Math.max(maxInc, res);
                 maxInc = 1;
+                res = Math.max(maxDec, res);
             } else if (nums[i] < nums[i + 1]) {
                 maxInc += 1;
-                res = Math.max(maxDec, res);
                 maxDec = 1;
+                res = Math.max(maxInc, res);
             } else {
-                res = Math.max(res, Math.max(maxInc,maxDec));
                 maxInc = 1;
                 maxDec = 1;
             }
         }
 
-        return Math.max(res, Math.max(maxInc,maxDec));
+        return res;
     }
 }
