@@ -34,21 +34,35 @@ class Solution {
         // return true;
 
         // Better Approach
-        int[] freqS1 = new int[26];
-        int[] freqS2 = new int[26];
-        int cntDiff = 0;
-        for(int i = 0; i < n; i++){
-            if(ch1[i] != ch2[i]){
-                cntDiff++;
+        // int[] freqS1 = new int[26];
+        // int[] freqS2 = new int[26];
+        // int cntDiff = 0;
+        // for(int i = 0; i < n; i++){
+        //     if(ch1[i] != ch2[i]){
+        //         cntDiff++;
 
-                if(cntDiff > 2) return false;
-            }
+        //         if(cntDiff > 2) return false;
+        //     }
 
-            freqS1[ch1[i] - 'a']++;
-            freqS2[ch2[i] - 'a']++;
+        //     freqS1[ch1[i] - 'a']++;
+        //     freqS2[ch2[i] - 'a']++;
             
+        // }
+
+        // return Arrays.equals(freqS1,freqS2); 
+
+        // Optimal
+        int maxDiff = 0, firstInd = 0, secondInd = 0;
+        for(int i = 0;i<n;i++){
+            if(ch1[i] != ch2[i]){
+                maxDiff++;
+
+                if(maxDiff > 2) return false;
+                else if(maxDiff == 1) firstInd = i;
+                else secondInd = i;
+            }
         }
 
-        return Arrays.equals(freqS1,freqS2); 
+        return ch1[firstInd] == ch2[secondInd] && ch1[secondInd] == ch2[firstInd];
     }
 }
