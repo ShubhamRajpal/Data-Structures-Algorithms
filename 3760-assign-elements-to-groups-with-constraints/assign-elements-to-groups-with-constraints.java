@@ -18,7 +18,7 @@ class Solution {
                         minIndex = Math.min(minIndex, factorsMap.get(j));
                     }
 
-                    if(factorsMap.containsKey(groups[i] / j)){
+                    if(j != groups[i] / j  && factorsMap.containsKey(groups[i] / j)){
                         minIndex = Math.min(minIndex, factorsMap.get(groups[i] / j));
                     }
                 }
