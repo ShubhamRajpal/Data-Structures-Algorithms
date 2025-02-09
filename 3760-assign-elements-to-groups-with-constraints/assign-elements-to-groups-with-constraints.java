@@ -15,13 +15,11 @@ class Solution {
             for(int j = 1; j * j <= groups[i]; j++){
                 if(groups[i] % j == 0){
                     if(factorsMap.containsKey(j)){
-                        int idx1 = factorsMap.get(j);
-                        minIndex = Math.min(minIndex, idx1);
+                        minIndex = Math.min(minIndex, factorsMap.get(j));
                     }
 
                     if(factorsMap.containsKey(groups[i] / j)){
-                        int idx2 = factorsMap.get(groups[i] / j);
-                        minIndex = Math.min(minIndex, idx2);
+                        minIndex = Math.min(minIndex, factorsMap.get(groups[i] / j));
                     }
                 }
             }
