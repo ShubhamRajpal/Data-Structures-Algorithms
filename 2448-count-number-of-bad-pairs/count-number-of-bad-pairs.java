@@ -3,14 +3,14 @@ class Solution {
         
         int n = nums.length;
         Map<Integer, Integer> diffMap = new HashMap<>();
-        int[] arr = nums.clone();
-        for (int i = 0; i < n; i++) {
-            arr[i] = nums[i] - i;
-        }
+        // int[] arr = nums.clone();
+        // for (int i = 0; i < n; i++) {
+        //     arr[i] = nums[i] - i;
+        // }
 
         long totalbadPairs = 0;
         for(int i = 0; i < n; i++){
-            int diff = arr[i];
+            int diff = nums[i] - i;
             int goodPairs  = 0;
             if(diffMap.containsKey(diff)){
                 goodPairs = diffMap.getOrDefault(diff, 0);
