@@ -5,7 +5,7 @@ class Solution {
 
         Map<Integer, Integer> factorsMap = new HashMap<>();
         for(int i = 0; i < m; i++){
-            if(!factorsMap.containsKey(elements[i])) factorsMap.put(elements[i], i);
+             factorsMap.putIfAbsent(elements[i], i);
         }
 
         int[] res = new int[n];
