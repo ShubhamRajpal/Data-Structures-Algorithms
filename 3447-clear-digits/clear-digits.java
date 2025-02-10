@@ -18,18 +18,15 @@ class Solution {
 
         // return sb.toString();
 
-        // Using Stack
+        // Using Stack TC -> O(N) SC -> O(N)
         Stack<Character> st = new Stack<>();
         StringBuilder sb = new StringBuilder();
-        int idx = 0 ;
-        while(idx < s.length()){
-            char ch = s.charAt(idx);
+        for(char ch : s.toCharArray()){
             if(Character.isDigit(ch) && !st.isEmpty()){
                 st.pop();
             }else{
                 st.push(ch);
             }
-            idx++;
         }
 
         while(!st.isEmpty()){
