@@ -19,20 +19,36 @@ class Solution {
         // return sb.toString();
 
         // Using Stack TC -> O(N) SC -> O(N)
-        Stack<Character> st = new Stack<>();
-        StringBuilder sb = new StringBuilder();
-        for(char ch : s.toCharArray()){
-            if(Character.isDigit(ch) && !st.isEmpty()){
-                st.pop();
-            }else{
-                st.push(ch);
+        // Stack<Character> st = new Stack<>();
+        // StringBuilder sb = new StringBuilder();
+        // for(char ch : s.toCharArray()){
+        //     if(Character.isDigit(ch) && !st.isEmpty()){
+        //         st.pop();
+        //     }else{
+        //         st.push(ch);
+        //     }
+        // }
+
+        // while(!st.isEmpty()){
+        //     sb.append(st.pop());
+        // }
+
+        // return sb.reverse().toString();
+
+        // Without extra space
+        StringBuilder temp = new StringBuilder(s);
+        int i = 0, j= 0;
+        while(i < temp.length()){
+            if(Character.isDigit(temp.charAt(i))){
+                j--;
             }
+            else{
+                temp.setCharAt(j, temp.charAt(i));
+                j++;
+            }
+            i++;
         }
 
-        while(!st.isEmpty()){
-            sb.append(st.pop());
-        }
-
-        return sb.reverse().toString();
+        return temp.substring(0, j).toString();
     }
 }
