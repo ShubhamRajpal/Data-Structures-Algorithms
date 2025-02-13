@@ -7,11 +7,9 @@ class Solution {
         }
 
         int cnt = 0;
-        while(pq.size() >= 2){
+        while(pq.peek() < k){
             long min = pq.poll();
             long max = pq.poll();
-
-            if(min >= k) return cnt;
 
             cnt++;
             pq.offer((min*2) + max);
