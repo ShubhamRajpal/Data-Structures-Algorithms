@@ -7,7 +7,7 @@ class Solution {
         }
 
         int cnt = 0;
-        while(pq.peek() < k){
+        while(!pq.isEmpty() && pq.peek() < k){
             long min = pq.poll();
             long max = pq.poll();
 
