@@ -8,7 +8,7 @@ class ProductOfNumbers {
     }
     
     public void add(int num) {
-        // Brute TC -> O(N)
+        // Brute TC -> O(1)
         // numsList.add(num);
 
         // Optimal
@@ -23,7 +23,7 @@ class ProductOfNumbers {
     
     public int getProduct(int k) {
         
-        // Brute TC -> O(N*k)
+        // Brute TC -> O(k)
         // int n = numsList.size();
         // int prod = 1;
         // for(int i = n-k; i < n; i++){
