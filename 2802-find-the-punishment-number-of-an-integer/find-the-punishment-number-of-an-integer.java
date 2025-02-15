@@ -25,6 +25,8 @@ class Solution {
 
         boolean possible = false;
         for(int j = i; j < sq.length(); j++){
+
+            // Add value of subtring[i..j] to curSum
             String str = sq.substring(i, j+1);
             int val = Integer.parseInt(str);
 
@@ -40,6 +42,17 @@ class Solution {
         return false;
     }
 
+    private boolean checkOptimal(int curNum, int curSum, int num){
+        if(curNum == 0){
+            return curSum == num;
+        }
+
+        return checkOptimal(curNum/10, curSum + (curNum % 10), num) ||
+                checkOptimal(curNum/100, curSum + (curNum % 100), num) ||
+                checkOptimal(curNum/1000, curSum + (curNum % 1000), num) ||
+                checkOptimal(curNum/10000, curSum + (curNum % 10000), num);
+    }
+
     public int punishmentNumber(int n) {
         
         // int sum = 0;
@@ -51,19 +64,35 @@ class Solution {
 
         // return sum;
 
-        // Memoization
-        int res = 0;
-        for(int i = 1; i <= n ; i++){
-            String sq = Integer.toString(i*i);
+        // Approach-1 : (Recursion + Memoization)
+        // T.C : O(n * 2^(log10(n^2)))
+        // S.C : O(n * log10(n^2))
+        // int res = 0;
+        // for(int i = 1; i <= n ; i++){
+        //     String sq = Integer.toString(i*i);
 
-            int[][] memo = new int[sq.length()+1][i+1];
-            for(int it[] : memo) Arrays.fill(it, -1);
+        //     int[][] memo = new int[sq.length()+1][i+1];
+        //     for(int it[] : memo) Arrays.fill(it, -1);
 
-            if(checkMemo(0, i, sq, 0, memo)){
-                res += Integer.valueOf(sq);
+        //     if(checkMemo(0, i, sq, 0, memo)){
+        //         res += Integer.valueOf(sq);
+        //     }
+        // }
+
+        // return res;
+
+        // Approach-2 : (Recursion + Memoization)
+        // T.C : O(n * 2^(log10(n^2)))
+        // S.C : O(log10(n^2))
+
+        int sum = 0;
+        for(int i = 1;i <= n;i++){
+            int val = i*i;
+            if(checkOptimal(val, 0, i)){
+                sum += val;
             }
         }
 
-        return res;
+        return sum;
     }
 }
