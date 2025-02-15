@@ -6,7 +6,7 @@ class Solution {
         }
 
         for (int i = 0; i < square.length(); i++) {
-            if (backtrack(num, square.substring(i + 1), Integer.valueOf(square.substring(0, i + 1)) + curSum))
+            if (backtrack(num, square.substring(i + 1), Integer.parseInt(square.substring(0, i + 1)) + curSum))
                 return true;
         }
 
