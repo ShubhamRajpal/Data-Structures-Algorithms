@@ -14,7 +14,6 @@ class Solution {
 
         right--;
         for(int i = 0; i < evenCount; i++){
-            if(right < 0) break;
             maxWeight += pizzas[right];
             right -= 2;
         }
