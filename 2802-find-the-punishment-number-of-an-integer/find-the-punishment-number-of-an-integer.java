@@ -1,17 +1,27 @@
 class Solution {
 
-    private boolean check(int num, String square, int curSum) {
-        if (square.length() == 0) {
-            return curSum == num;
+    private boolean check(int i, String square, int curSum, int target){
+
+        if(i == square.length()){
+            return curSum == target;
         }
 
-        for (int i = 0; i < square.length(); i++) {
-            if (check(num, square.substring(i + 1), Integer.parseInt(square.substring(0, i + 1)) + curSum))
+        if(curSum >  target) return false;
+
+        for(int j = i;j < square.length(); j++){
+            
+            String substr = square.substring(i, j+1);
+            int val = Integer.parseInt(substr);
+            if(check(j+1, square, curSum+val, target)){
                 return true;
+            }
         }
 
         return false;
+
     }
+
+
 
     private boolean checkMemo(int i, int num, String sq, int curSum, int [][] memo){
         if(i == sq.length()){
@@ -55,14 +65,14 @@ class Solution {
 
     public int punishmentNumber(int n) {
         
-        // int sum = 0;
-        // for(int i = 1; i <= n ; i++){
-        //     if(check(i, Integer.toString(i*i), 0)){
-        //         sum += i*i;
-        //     }
-        // }
+        int sum = 0;
+        for(int i = 1; i <= n ; i++){
+            if(check(0, Integer.toString(i*i), 0, i)){
+                sum += i*i;
+            }
+        }
 
-        // return sum;
+        return sum;
 
         // Approach-1 : (Recursion + Memoization)
         // T.C : O(n * 2^(log10(n^2)))
@@ -85,14 +95,14 @@ class Solution {
         // T.C : O(n * 2^(log10(n^2)))
         // S.C : O(log10(n^2))
 
-        int sum = 0;
-        for(int i = 1;i <= n;i++){
-            int val = i*i;
-            if(checkOptimal(val, 0, i)){
-                sum += val;
-            }
-        }
+        // int sum = 0;
+        // for(int i = 1;i <= n;i++){
+        //     int val = i*i;
+        //     if(checkOptimal(val, 0, i)){
+        //         sum += val;
+        //     }
+        // }
 
-        return sum;
+        // return sum;
     }
 }
