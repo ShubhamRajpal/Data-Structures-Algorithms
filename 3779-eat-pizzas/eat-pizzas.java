@@ -13,12 +13,10 @@ class Solution {
         }
 
         right--;
-        if(right >= 0){
-            for(int i = 0; i < evenCount; i++){
-                if(right <= 0) break;
-                maxWeight += pizzas[right];
-                right -= 2;
-            }
+        for(int i = 0; i < evenCount; i++){
+            if(right <= 0) break;
+            maxWeight += pizzas[right];
+            right -= 2;
         }
 
         return maxWeight;
