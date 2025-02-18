@@ -1,7 +1,6 @@
 class Solution {
     private void reversed(int i, int j, char[] ans){
         while(i < j){
-            System.out.println(i+" "+j);
             char temp = ans[i];
             ans[i] = ans[j];
             ans[j] = temp;
@@ -36,8 +35,6 @@ class Solution {
 
 
         }
-
-        // for(int j : ans) System.out.print(j + " ");
 
         return String.valueOf(ans);
     }
