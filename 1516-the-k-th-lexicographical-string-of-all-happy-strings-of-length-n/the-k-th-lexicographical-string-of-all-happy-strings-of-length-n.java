@@ -7,7 +7,9 @@ class Solution {
         }
 
         for(int i = 0; i < 3; i++){
+            
             if(ans.size() == k) break;
+
             char curChar = (char)('a'+i);  
             if(prev == '\0' || curChar != prev){
                 sb.append(curChar);
@@ -24,8 +26,7 @@ class Solution {
          
         solve(sb, '\0', n, k, ans);
         System.out.print(ans);
-        // return ans.size() >= k ? ans.get(ans.size()-1 - (ans.size() - k)) : "";
-        return ans.size() < k ? "" : ans.get(ans.size()-1);
+        return ans.size() < k ? "" : ans.get(k-1);
 
     }
 }
