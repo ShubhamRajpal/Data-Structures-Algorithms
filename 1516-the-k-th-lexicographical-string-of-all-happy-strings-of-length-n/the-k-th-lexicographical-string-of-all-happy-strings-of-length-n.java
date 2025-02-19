@@ -23,7 +23,6 @@ class Solution {
         StringBuilder sb = new StringBuilder();
 
         solve(sb, n, k, ans);
-        System.out.print(ans);
         return ans.size() < k ? "" : ans.get(k - 1);
 
     }
