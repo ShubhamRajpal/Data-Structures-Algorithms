@@ -7,11 +7,10 @@ class Solution {
         }
 
         for(int i = 0; i < 3; i++){
+            if(ans.size() == k) break;
             char curChar = (char)('a'+i);  
-            // System.out.print(curChar+" ");
             if(prev == '\0' || curChar != prev){
                 sb.append(curChar);
-                // System.out.print(sb.toString());
                 solve(sb, curChar, n, k, ans);
                 sb.deleteCharAt(sb.length() - 1);
             }
@@ -25,7 +24,8 @@ class Solution {
          
         solve(sb, '\0', n, k, ans);
         System.out.print(ans);
-        return ans.size() >= k ? ans.get(ans.size()-1 - (ans.size() - k)) : "";
+        // return ans.size() >= k ? ans.get(ans.size()-1 - (ans.size() - k)) : "";
+        return ans.size() < k ? "" : ans.get(ans.size()-1);
 
     }
 }
