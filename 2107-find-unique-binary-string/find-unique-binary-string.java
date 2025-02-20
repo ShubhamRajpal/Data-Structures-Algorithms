@@ -1,30 +1,27 @@
 class Solution {
 
-    public String solve(StringBuilder sb , int n, Set<String> present){
+    public String solve(String sb , int n, Set<String> present){
         if(sb.length() == n) {
-            if(!present.contains(sb.toString())){
-                return sb.toString();
+            if(!present.contains(sb)){
+                return sb;
             }
             return "";
         }
 
-        String ans = solve(sb.append('0'), n, present);
-        sb.deleteCharAt(sb.length()-1);
+        String ans = solve(sb+'0', n, present);
         if(ans.length() > 0) return ans;
 
-        String ans2 =  solve(sb.append('1'), n, present);
-         sb.deleteCharAt(sb.length()-1);
+        String ans2 =  solve(sb+'1', n, present);
         return ans2;
     }
 
 
     public String findDifferentBinaryString(String[] nums) {
-        StringBuilder sb = new StringBuilder();
         Set<String> present = new HashSet<>();
         int n = nums.length;
         for(String s : nums) present.add(s);
 
-        return solve(sb, n, present);
+        return solve("", n, present);
 
 
     }
