@@ -14,39 +14,38 @@
  * }
  */
 class Solution {
-    static int idx = 0;
 
-    private TreeNode buildTree(String traversal, int depth){
-        if(idx >= traversal.length()){
+    private TreeNode buildTree(int[] idx, String traversal, int depth){
+        if(idx[0] >= traversal.length()){
             return null;
         }
 
-        int j = idx;
+        int j = idx[0];
         while(j < traversal.length() && traversal.charAt(j) == '-'){
             j++;
         }
 
-        int curDepth = j-idx;
+        int curDepth = j-idx[0];
         if(curDepth != depth) return null;
 
-        idx += curDepth;
+        idx[0] += curDepth;
 
         int val = 0;
-        while(idx < traversal.length() && Character.isDigit(traversal.charAt(idx))){
-            val = 10 * val + (traversal.charAt(idx) - '0');
-            idx++;
+        while(idx[0] < traversal.length() && Character.isDigit(traversal.charAt(idx[0]))){
+            val = 10 * val + (traversal.charAt(idx[0]) - '0');
+            idx[0]++;
         }
 
         TreeNode newNode = new TreeNode(val);
 
-        newNode.left = buildTree(traversal, depth+1);
-        newNode.right = buildTree(traversal, depth+1);
+        newNode.left = buildTree(idx, traversal, depth+1);
+        newNode.right = buildTree(idx, traversal, depth+1);
 
         return newNode;
     }
     public TreeNode recoverFromPreorder(String traversal) {
-        idx = 0;
-        return buildTree(traversal, 0);
+        int[] idx = new int[1];
+        return buildTree(idx, traversal, 0);
         
     }
 }
