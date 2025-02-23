@@ -16,7 +16,6 @@
 class Solution {
     private TreeNode buildTree(int[] preorder, int preStart, int preEnd, int[] postorder, int postStart, int postEnd,
             Map<Integer, Integer> postIndMap) {
-        System.out.println("Pre: "+preStart+" "+preEnd+" Post: " + postStart+" "+postEnd);
         if(preStart > preEnd || postStart > postEnd){
             return null;
         }
