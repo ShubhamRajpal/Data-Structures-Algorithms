@@ -13,10 +13,10 @@ class Solution {
         int res = 0;
         for (int i = 0; i < n; i++) {
             if (prefixSum[i] % 2 == 0) {
-                res = (res+oddCnt)%MOD;
+                res = (res + oddCnt) % MOD;
                 evenCnt++;
             } else {
-                res = (res+evenCnt)%MOD;
+                res = (res + evenCnt) % MOD;
                 oddCnt++;
             }
         }
