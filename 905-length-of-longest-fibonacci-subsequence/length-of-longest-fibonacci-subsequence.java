@@ -93,40 +93,40 @@ class Solution {
         // return maxLen;
 
         // Memoization
-        int maxLen = 0;
-        int[][] dp = new int[n][n];
-        for (int it[] : dp)
-            Arrays.fill(it, -1);
-
-        for (int i = 0; i < n; i++) {
-            for (int j = i + 1; j < n; j++) {
-                int len = solveMemoize(i, j, arr, indexMap, dp);
-                if (len >= 3) {
-                    maxLen = Math.max(maxLen, len);
-                }
-            }
-        }
-
-        return maxLen;
-
-        // Tabulation
         // int maxLen = 0;
         // int[][] dp = new int[n][n];
+        // for (int it[] : dp)
+        //     Arrays.fill(it, -1);
 
         // for (int i = 0; i < n; i++) {
         //     for (int j = i + 1; j < n; j++) {
-        //         int diff = arr[j] - arr[i];
-        //         int k = indexMap.getOrDefault(diff, -1);
-        //         if (diff < arr[i] && k >= 0) {
-        //             dp[i][j] = 1 + dp[k][i];
-        //         }else dp[i][j] = 2; 
-                
-                
-        //         maxLen = Math.max(maxLen, dp[i][j]);
+        //         int len = solveMemoize(i, j, arr, indexMap, dp);
+        //         if (len >= 3) {
+        //             maxLen = Math.max(maxLen, len);
+        //         }
         //     }
         // }
 
-        // return maxLen >= 3 ? maxLen : 0;
+        // return maxLen;
+
+        // Tabulation
+        int maxLen = 0;
+        int[][] dp = new int[n][n];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                int diff = arr[j] - arr[i];
+                int k = indexMap.getOrDefault(diff, -1);
+                if (k < i && k >= 0) {
+                    dp[i][j] = 1 + dp[k][i];
+                }else dp[i][j] = 2; 
+                
+                
+                maxLen = Math.max(maxLen, dp[i][j]);
+            }
+        }
+
+        return maxLen >= 3 ? maxLen : 0;
 
     }
 }
