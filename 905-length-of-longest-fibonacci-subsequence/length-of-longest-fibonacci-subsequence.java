@@ -33,15 +33,27 @@ class Solution {
     // return dp[idx][prevIdx + 1][prev2Idx + 1] = Math.max(take, notTake);
     // }
 
-    public int solve(int prevIdx, int curIdx, int[] arr, Map<Integer, Integer> indexMap) {
+    public int solveRecursive(int prevIdx, int curIdx, int[] arr, Map<Integer, Integer> indexMap) {
 
         int diff = arr[curIdx] - arr[prevIdx];
         if (indexMap.containsKey(diff) && indexMap.get(diff) < prevIdx) {
             int i = indexMap.get(diff);
-            return 1 + solve(i, prevIdx, arr, indexMap);
+            return 1 + solveRecursive(i, prevIdx, arr, indexMap);
         }
 
         return 2;
+    }
+
+     public int solveMemoize(int prevIdx, int curIdx, int[] arr, Map<Integer, Integer> indexMap, int[][] dp) {
+
+        if(dp[prevIdx][curIdx] != -1)  return dp[prevIdx][curIdx];
+        int diff = arr[curIdx] - arr[prevIdx];
+        if (indexMap.containsKey(diff) && indexMap.get(diff) < prevIdx) {
+            int i = indexMap.get(diff);
+            return dp[prevIdx][curIdx] = 1 + solveMemoize(i, prevIdx, arr, indexMap, dp);
+        }
+
+        return dp[prevIdx][curIdx] = 2;
     }
 
     public int lenLongestFibSubseq(int[] arr) {
@@ -65,10 +77,26 @@ class Solution {
             indexMap.put(arr[i], i);
         }
 
+        // Recursive
+        // int maxLen = 0;
+        // for (int i = 1; i < n; i++) {
+        //     for (int j = i + 1; j < n; j++) {
+        //         int len = solve(i, j, arr, indexMap);
+        //         if (len >= 3) {
+        //             maxLen = Math.max(maxLen, len);
+        //         }
+        //     }
+        // }
+
+        // return maxLen;
+
+        // Memoization
         int maxLen = 0;
+        int[][] dp = new int[n][n];
+        for(int it[] : dp) Arrays.fill(it, -1);
         for (int i = 1; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
-                int len = solve(i, j, arr, indexMap);
+                int len = solveMemoize(i, j, arr, indexMap, dp);
                 if (len >= 3) {
                     maxLen = Math.max(maxLen, len);
                 }
