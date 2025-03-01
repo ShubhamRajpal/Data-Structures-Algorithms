@@ -1,5 +1,5 @@
 /*
-    Time Complexity: O(4*N*M) log(4*N*M)
+    Time Complexity: O(4*N*M) log(N*M)
     Problem Link: https://leetcode.com/problems/path-with-minimum-effort/
 */
 
