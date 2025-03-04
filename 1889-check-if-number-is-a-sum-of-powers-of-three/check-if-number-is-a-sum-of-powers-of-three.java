@@ -10,15 +10,25 @@ class Solution {
         return x;
     }
     public boolean checkPowersOfThree(int n) {
+        // int temp = n;
+        // int sum = 0;
+        // while(temp != 0){
+        //     int k = findLargestPower(temp);
+        //     int num = (int)Math.pow(3,k);
+        //     sum += num;
+        //     temp = temp % num;
+        // }
+
+        // return (int)sum == n;
+
+        // Approach 2 using Ternary Representation
         int temp = n;
-        int sum = 0;
         while(temp != 0){
-            int k = findLargestPower(temp);
-            int num = (int)Math.pow(3,k);
-            sum += num;
-            temp = temp % num;
+            int rem = temp % 3;
+            if(rem == 2) return false;
+            temp = temp/3;
         }
 
-        return (int)sum == n;
+        return true;
     }
 }
