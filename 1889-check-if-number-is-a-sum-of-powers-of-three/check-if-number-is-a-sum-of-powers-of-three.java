@@ -40,7 +40,7 @@ class Solution {
 
         // return true;
 
-        // Appraoch 3Using Backtracking
+        // Appraoch 3 Using Backtracking
         return solve(n, 0);
     }
 }
