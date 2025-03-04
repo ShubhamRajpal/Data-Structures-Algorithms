@@ -9,6 +9,15 @@ class Solution {
         }
         return x;
     }
+
+    private boolean solve(int num, int p){
+        if(num == 0) return true;
+
+        if(Math.pow(3, p) > num) return false;
+
+        return solve(num - (int)(Math.pow(3,p)), p+1) || solve(num, p+1);
+
+    }
     public boolean checkPowersOfThree(int n) {
         // int temp = n;
         // int sum = 0;
@@ -22,13 +31,16 @@ class Solution {
         // return (int)sum == n;
 
         // Approach 2 using Ternary Representation
-        int temp = n;
-        while(temp != 0){
-            int rem = temp % 3;
-            if(rem == 2) return false;
-            temp = temp/3;
-        }
+        // int temp = n;
+        // while(temp != 0){
+        //     int rem = temp % 3;
+        //     if(rem == 2) return false;
+        //     temp = temp/3;
+        // }
 
-        return true;
+        // return true;
+
+        // Appraoch 3Using Backtracking
+        return solve(n, 0);
     }
 }
