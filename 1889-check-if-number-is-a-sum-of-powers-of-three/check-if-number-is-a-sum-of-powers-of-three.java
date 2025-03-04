@@ -7,16 +7,13 @@ class Solution {
             if(k > num) return x;
             x++;
         }
-        System.out.println(x);
         return x;
     }
     public boolean checkPowersOfThree(int n) {
         int temp = n;
         int sum = 0;
         while(temp != 0){
-            // System.out.println(temp);
             int k = findLargestPower(temp);
-            System.out.print(k);
             int num = (int)Math.pow(3,k);
             sum += num;
             temp = temp % num;
