@@ -16,11 +16,14 @@ class Solution {
         // return start + solve(start-2);
 
         // Approach 2 Iterative
-        long sum = 1;
-        for(int i = 2; i <= n; i++){
-            sum += 4*(i-1);
-        }
+        // long sum = 1;
+        // for(int i = 2; i <= n; i++){
+        //     sum += 4*(i-1);
+        // }
 
-        return sum;
+        // return sum;
+
+        //Appraoch 3
+        return 1 + (long)n*(n-1)*2;
     }
 }
