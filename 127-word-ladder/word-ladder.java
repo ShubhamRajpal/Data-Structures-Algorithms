@@ -1,3 +1,10 @@
+/*
+    Time Complexity: O(N * wordLength * 26)
+    Space Complexity: O(wordList.length)
+    Problem Link: https://leetcode.com/problems/word-ladder/
+*/
+
+
 class Pair {
     String first;
     int second;
@@ -16,6 +23,9 @@ class Solution {
         for (int i = 0; i < wordList.size(); i++) {
             st.add(wordList.get(i));
         }
+
+        if(!st.contains(endWord)) return 0;
+        
         st.remove(beginWord);
         while (!q.isEmpty()) {
             Pair front = q.peek();
