@@ -5,9 +5,6 @@ class Solution {
         int size = n*n;
         int originalSum = (size * (size+1))/2;
         Map<Integer,Integer> freq = new HashMap<>();
-        // for(int i = 1; i <= size; i++){
-        //     freq.put(i, freq.getOrDefault(i,0)+1);
-        // }
         int repeated = 0, curSum = 0;
         for(int i = 0; i < n; i++){
             for(int j = 0; j < n; j++){
