@@ -1,5 +1,7 @@
 class Solution {
-    public int[] closestPrimes(int left, int right) {
+
+    public int[] sieveHelper(int right){
+
         int[] isPrime = new int[right+1];
         for (int i = 2; i <= right; i++) {
             isPrime[i] = 1;
@@ -12,6 +14,11 @@ class Solution {
                 }
             }
         }
+
+        return isPrime;
+    }
+    public int[] closestPrimes(int left, int right) {
+        int[] isPrime = sieveHelper(right);
 
         List<Integer> prime = new ArrayList<>();
         for(int i = left; i <= right; i++){
