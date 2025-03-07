@@ -1,21 +1,21 @@
 class Solution {
     public int[] closestPrimes(int left, int right) {
-        int[] primes = new int[right+1];
+        int[] isPrime = new int[right+1];
         for (int i = 2; i <= right; i++) {
-            primes[i] = 1;
+            isPrime[i] = 1;
         }
 
         for (int i = 2; i*i <= right; i++) {
-            if (primes[i] == 1) {
+            if (isPrime[i] == 1) {
                 for (int j = i * i; j <= right; j += i) {
-                    primes[j] = 0;
+                    isPrime[j] = 0;
                 }
             }
         }
 
         List<Integer> prime = new ArrayList<>();
         for(int i = left; i <= right; i++){
-            if(primes[i] == 1){
+            if(isPrime[i] == 1){
                 prime.add(i);
             }
         }
