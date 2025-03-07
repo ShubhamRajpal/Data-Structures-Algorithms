@@ -1,44 +1,37 @@
 class Solution {
 
-    public int[] sieveHelper(int right){
+    public boolean isPrime(int num){
 
-        int[] isPrime = new int[right+1];
-        for (int i = 2; i <= right; i++) {
-            isPrime[i] = 1;
+        if(num == 1)  return false;
+
+        for (int i = 2; i*i <= num; i++) {
+            if(num % i == 0) return false;
         }
 
-        for (int i = 2; i*i <= right; i++) {
-            if (isPrime[i] == 1) {
-                for (int j = i * i; j <= right; j += i) {
-                    isPrime[j] = 0;
-                }
-            }
-        }
-
-        return isPrime;
+        return true;
     }
     public int[] closestPrimes(int left, int right) {
-        int[] isPrime = sieveHelper(right);
 
-        List<Integer> prime = new ArrayList<>();
+        List<Integer> primes = new ArrayList<>();
         for(int i = left; i <= right; i++){
-            if(isPrime[i] == 1){
-                prime.add(i);
+            if(isPrime(i)){
+                if(primes.size() != 0 && (i - primes.get(primes.size() - 1) <= 2)){
+                    return new int[]{primes.get(primes.size()-1),i};
+                }
+                primes.add(i);
             }
         }
 
-
-        int mini = Integer.MAX_VALUE;
         int[] res = new int[2];
+        int mini = Integer.MAX_VALUE;
         Arrays.fill(res, -1);
-        int num1 = -1;
-        for (int i = 1; i < prime.size(); i++) {
+        for (int i = 1; i < primes.size(); i++) {
 
-            int diff = prime.get(i) - prime.get(i-1);
+            int diff = primes.get(i) - primes.get(i-1);
             if (diff < mini) {
                 mini = diff;
-                res[0] = prime.get(i-1);
-                res[1] = prime.get(i);
+                res[0] = primes.get(i-1);
+                res[1] = primes.get(i);
             }
         
         }
