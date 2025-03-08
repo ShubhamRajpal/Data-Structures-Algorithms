@@ -1,0 +1,50 @@
+
+/*
+  T.C: O(ElogE) + O(ElogE) ~ O(ElogE),  where E = no. of edges and V = no. of vertices
+  S.C: O(E) + O(V)
+  Problem Link: https://www.geeksforgeeks.org/problems/minimum-spanning-tree/1 
+*/
+
+
+class Pair{
+    int distance, node;
+    public Pair(int d, int n){
+        distance = d;
+        node = n;
+    }
+}
+
+class Solution {
+    static int spanningTree(int V, int E, List<List<int[]>> adj) {
+        
+        PriorityQueue<Pair> pq = new PriorityQueue<Pair>((a, b) -> a.distance - b.distance);
+        pq.add(new Pair(0, 0));
+        
+        int[] vis = new int[V];
+        int sum = 0;
+        
+        while(!pq.isEmpty()){
+            Pair p = pq.peek();
+            int dis = p.distance;
+            int node = p.node;
+            pq.remove();
+            
+            if(vis[node] == 1) continue;
+            
+            vis[node] = 1;
+            sum += dis;
+            
+            for(int i = 0; i < adj.get(node).size(); i++){
+                int adjNode = adj.get(node).get(i)[0];
+                int eWt = adj.get(node).get(i)[1];
+                
+                if(vis[adjNode] == 0){
+                    pq.add(new Pair(eWt, adjNode));
+                }
+            }
+            
+        }
+        
+        return sum;
+    }
+}
