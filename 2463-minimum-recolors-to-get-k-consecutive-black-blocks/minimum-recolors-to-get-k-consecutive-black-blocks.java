@@ -3,30 +3,19 @@ class Solution {
         int cnt = 0;
         int maxi = 0;
         int n = blocks.length();
-        for (int i = 0; i < k; i++) {
-            if (blocks.charAt(i) == 'B') {
-                cnt++;
-            }
-        }
 
-        if (cnt >= k)
-            return 0;
-
-        int l = 0, r = k - 1;
-        maxi = cnt;
+        int l = 0, r = 0;
         while (r < n) {
-            r++;
+            if(blocks.charAt(r) == 'B') cnt++;
 
             while (r - l + 1 > k) {
-                if (blocks.charAt(l) == 'B')
-                    cnt--;
+                if (blocks.charAt(l) == 'B') cnt--;
                 l++;
             }
 
-            if (r < n && blocks.charAt(r) == 'B')
-                cnt++;
 
             maxi = Math.max(maxi, cnt);
+            r++;
         }
 
         if (maxi >= k) return 0;
