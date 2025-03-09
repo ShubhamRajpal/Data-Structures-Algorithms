@@ -14,7 +14,7 @@ class Solution {
 
         // return cnt;
 
-        // Optimal using sliding window
+        // Optimal using one pass
         for (int j = 0; j < n; j++) {
             if (colors[j % n] == colors[(j + 2) % n] && colors[(j + 1) % n] != colors[j % n]) {
                 cnt++;
