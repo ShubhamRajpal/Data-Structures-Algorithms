@@ -14,14 +14,35 @@ class Solution {
 
         // return cnt;
 
-        // Optimal using one pass
-        for (int j = 0; j < n; j++) {
-            if (colors[j % n] == colors[(j + 2) % n] && colors[(j + 1) % n] != colors[j % n]) {
-                cnt++;
+        // Optimal using sliding window
+        int i = 0, j = 2;
+        while((j%n) < n){
+
+            
+
+            if(colors[i] == colors[j%n] && colors[(j-1)%n] != colors[i]) cnt++;
+            j++;
+            
+
+            while(j - i + 1 != 3){
+                i++;
             }
-                
+
+            if(i >= n)  break;
         }
 
         return cnt;
+        
+        // Optimal using one pass
+        // for (int j = 0; j < n; j++) {
+        //     if (colors[j % n] == colors[(j + 2) % n] && colors[(j + 1) % n] != colors[j % n]) {
+        //         cnt++;
+        //     }
+                
+        // }
+
+        // return cnt;
+
+        
     }
 }
