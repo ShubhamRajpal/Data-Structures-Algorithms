@@ -21,12 +21,12 @@ class Solution {
                 continue;
             }
 
+            if (j - i + 1 == k) {
+                cnt++;
+                i++;
+            }
+
             j++;
-
-            if (j - i < k) continue;
-
-            cnt++;
-            i++;
         }
 
         return cnt;
