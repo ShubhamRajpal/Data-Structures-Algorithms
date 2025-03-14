@@ -1,5 +1,7 @@
 /*
   Problem Link: https://leetcode.com/problems/number-of-operations-to-make-network-connected/description/
+  T.C. : O(E*4α)+O(N*4α)  where E = no. of edges and N = no. of nodes
+  S.C. : O(2N)
 */
 
 
