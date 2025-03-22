@@ -117,3 +117,71 @@ class Solution {
 }
 
 // Approach-3 (Using DisjointSet)
+// T.C : O(E * alpha(V))
+// S.C : O(V)
+class DisjointSet {
+    List<Integer> parent = new ArrayList<>();
+    List<Integer> size = new ArrayList<>();
+
+    public DisjointSet(int n) {
+        for (int i = 0; i <= n; i++) {
+            parent.add(i);
+            size.add(1);
+        }
+    }
+
+    public int findUPar(int node) {
+        if (node == parent.get(node)) {
+            return node;
+        }
+        int ulp = findUPar(parent.get(node));
+        parent.set(node, ulp);
+        return parent.get(node);
+    }
+
+    public void unionBySize(int u, int v) {
+        int ulp_u = findUPar(u);
+        int ulp_v = findUPar(v);
+        if (ulp_u == ulp_v)
+            return;
+        if (size.get(ulp_u) < size.get(ulp_v)) {
+            parent.set(ulp_u, ulp_v);
+            size.set(ulp_v, size.get(ulp_v) + size.get(ulp_u));
+        } else {
+            parent.set(ulp_v, ulp_u);
+            size.set(ulp_u, size.get(ulp_u) + size.get(ulp_v));
+        }
+    }
+}
+
+class Solution {
+
+    public int countCompleteComponents(int n, int[][] edges) {
+
+        DisjointSet ds = new DisjointSet(n);
+        Map<Integer, Integer> edgeMap = new HashMap<>();
+
+        for (int[] edge : edges) {
+            int u = edge[0];
+            int v = edge[1];
+            ds.unionBySize(u, v);
+        }
+
+        for (int[] edge : edges) {
+            int parent = ds.findUPar(edge[0]);
+            edgeMap.put(parent, edgeMap.getOrDefault(parent, 0) + 1);
+        }
+
+        int cnt = 0;
+        for (int i = 0; i < n; i++) {
+            if (ds.findUPar(i) == i) {
+                int v = ds.size.get(i);
+                int e = edgeMap.getOrDefault(i, 0);
+
+                if (v * (v - 1) / 2 == e) cnt++;
+            }
+        }
+
+        return cnt;
+    }
+}
