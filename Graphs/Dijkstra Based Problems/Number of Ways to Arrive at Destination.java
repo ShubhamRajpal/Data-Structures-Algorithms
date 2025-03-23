@@ -1,6 +1,6 @@
 /*
-    Time Complexity:  E log V
-    Space Complexity: O(N) -> for dist array + ways array + approximate complexity for priority queue
+    Time Complexity:  (N+E)*log N
+    Space Complexity: O(N+E) -> for dist array + ways array + approximate complexity for priority queue
     Problem Link: https://leetcode.com/problems/number-of-ways-to-arrive-at-destination/
 */
 
