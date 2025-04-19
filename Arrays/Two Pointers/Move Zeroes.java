@@ -3,8 +3,8 @@
 */
 
 // Approach-1(Brute - Using extra Space)
-//S.C- O(N)
 //T.C- O(N)
+//S.C- O(N)
 class Solution {
     public void moveZeroes(int[] nums) {
 
@@ -26,8 +26,8 @@ class Solution {
 
 
 // Approach-2(Optimal- without extra space)
-//S.C- O(N)
-//T.C- O(1)
+//T.C- O(N)
+//S.C- O(1)
 class Solution {
     public void moveZeroes(int[] nums) {
 
