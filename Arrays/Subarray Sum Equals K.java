@@ -9,22 +9,21 @@ class Solution {
     public int subarraySum(int[] nums, int k) {
         
     int n = nums.length;
-		int count = 0, sum = 0;
+    int count = 0, sum = 0;
     int s = k;
-		for (int i = 0; i < n; i++) {
-			for (int j = i; j < n; j++) {
-				sum = 0;
-				for (int k1 = i; k1 <= j; k1++) {
-					sum += nums[k1];
-				}
+    for (int i = 0; i < n; i++) {
+	for (int j = i; j < n; j++) {
+	    sum = 0;
+	    for (int k1 = i; k1 <= j; k1++) {
+		sum += nums[k1];
+	    }
 
-				if (sum == s) {
-					count++;
-				}
-			}
-		}
-
-		return count;
+	    if (sum == s) {
+		count++;
+	    }
+	}
+    }
+    return count;
     }
 }
 
@@ -36,19 +35,18 @@ class Solution {
     public int subarraySum(int[] nums, int k) {
         
     int n = nums.length;
-		int count = 0, sum = 0;
+    int count = 0, sum = 0;
     int s = k;
-		for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++) {
       sum = 0;
-			for (int j = i; j < n; j++) {
-        sum += nums[j];
-				if (sum == s) {
-					count++;
-				}
-			}
-		}
-
-		return count;
+      for (int j = i; j < n; j++) {
+      	sum += nums[j];
+	if (sum == s) {
+		count++;
+	}
+      }
+    }
+	return count;
     }
 }
 
@@ -60,25 +58,19 @@ class Solution {
     public int subarraySum(int[] nums, int k) {
         int n = nums.length;
         Map<Integer, Integer> mp = new HashMap<>();
+        mp.put(0, 1);
         int cnt = 0;
         int prefixSum = 0;
-        for(int i = 0;i < n; i++){
+        for (int i = 0; i < n; i++) {
             prefixSum += nums[i];
 
-            if(prefixSum == k){
-                cnt++;
-            }
-
             int rem = prefixSum - k;
-            if(mp.containsKey(rem)){
+            if (mp.containsKey(rem)) {
                 cnt += mp.get(rem);
             }
 
-            if(!mp.containsKey(prefixSum)){
-                mp.put(prefixSum , 1);
-            }else{
-                mp.put(prefixSum, mp.getOrDefault(prefixSum, 0)+1);
-            }
+            mp.put(prefixSum, mp.getOrDefault(prefixSum, 0) + 1);
+
         }
 
         return cnt;
