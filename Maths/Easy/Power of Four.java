@@ -56,7 +56,7 @@ class Solution {
     }
 }
 
-//Approach-4 (Using Maths: 1-Liner)
+//Approach-4 (Using Maths: 1-Liner largest power of 4 less than 2^31 is 4^15=1073741824)
 //T.C : O(1)
 class Solution {
     public boolean isPowerOfFour(int n) {
