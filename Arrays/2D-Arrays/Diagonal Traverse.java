@@ -1,6 +1,6 @@
 
 /*
-    Note : If you want to travel diagonally from right side, you can use the key map as (i-j) instead of (i+j)
+    Note : If you want to travel diagonally from left side, you can use the key map as (i-j) instead of (i+j)
     Related Qn : https://leetcode.com/problems/sort-the-matrix-diagonally/
 */
 
