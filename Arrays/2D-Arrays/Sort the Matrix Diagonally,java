@@ -1,0 +1,42 @@
+/*
+    Problem Link : https://leetcode.com/problems/sort-the-matrix-diagonally/
+    Similar GfG Qn :  https://practice.geeksforgeeks.org/problems/diagonal-morning-assembly0028/1#
+    Leetcode Qn Like this : Leetcode-498 (Diagonal Traverse) : https://leetcode.com/problems/diagonal-traverse/
+*/
+
+/*
+    Note : If you want to travel diaginally from right side, you can use the key map as (i+j) instead of (i-j)
+    Related Qn : https://leetcode.com/problems/diagonal-traverse/
+*/
+
+class Solution {
+    public int[][] diagonalSort(int[][] mat) {
+        int n = mat.length;
+        int m = mat[0].length;
+        Map<Integer, List<Integer>> diagMap = new HashMap<>();
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                int dis = i - j;
+                diagMap.putIfAbsent(dis, new ArrayList<>());
+                diagMap.get(dis).add(mat[i][j]);
+            }
+        }
+
+        // Iterate throught each diagonal to sort them
+        for (Map.Entry<Integer, List<Integer>> entry : diagMap.entrySet()) {
+            List<Integer> temp = entry.getValue();
+            Collections.sort(temp);
+        }
+
+        // Insert the sorted diagonals into mat
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                int dis = i - j;
+                mat[i][j] = diagMap.get(dis).remove(0);
+            }
+        }
+
+        return mat;
+    }
+}
