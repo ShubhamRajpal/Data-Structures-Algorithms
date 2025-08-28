@@ -47,3 +47,41 @@ class Solution {
         return grid;
     }
 }
+
+
+Approach-2 (Simple Simulation)
+T.C: O(n*m*log(n*m))    
+S.C: O(n*m)    
+class Solution {
+    public int[][] sortMatrix(int[][] grid) {
+        int n = grid.length;
+        int m = grid[0].length;
+
+        for (int i = 0; i < n; i++) {
+            List<Integer> temp = new ArrayList<>();
+            for (int j = 0; i+j < n; j++) {
+                temp.add(grid[i + j][j]);
+            }
+
+            temp.sort(Collections.reverseOrder());
+            System.out.println(temp);
+            for (int j = 0; j < temp.size(); j++) {
+                grid[i + j][j] = temp.get(j);
+            }
+        }
+
+        for (int j = 1; j < m; j++) {
+            List<Integer> temp = new ArrayList<>();
+            for (int i = 0; i+j < m; i++) {
+                temp.add(grid[i][i + j]);
+            }
+
+            Collections.sort(temp);
+            for (int i = 0; i < temp.size(); i++) {
+                grid[i][i + j] = temp.get(i);
+            }
+        }
+
+        return grid;
+    }
+}
