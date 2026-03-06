@@ -1,6 +1,7 @@
 /*
   Problem Link: https://leetcode.com/problems/split-array-largest-sum/
-  Similar Problem - Allocate Minimum Pages - https://www.geeksforgeeks.org/problems/allocate-minimum-number-of-pages0937/1
+  Similar Problems - 1. Allocate Minimum Pages - https://www.geeksforgeeks.org/problems/allocate-minimum-number-of-pages0937/1
+                     2. The Painter's Partition Problem-II - https://www.geeksforgeeks.org/problems/the-painters-partition-problem1535/1          
 */
 
 // Approach (binary search on answers min(max))
